@@ -1,38 +1,19 @@
 import "./App.css";
+import CreateContent from "./assets/CreateContentForm";
+import Header from "./assets/Header";
+import LeftMenu from "./assets/LeftMenu";
 import "./index.css";
 import profileIcon from "/profile-icon.svg";
-import headerIcon from "/title-header.svg";
 
 function App() {
   return (
     <>
-      <div className="head-row">
-        <div className="head-icon">
-          <img src={headerIcon} />
-        </div>
-        <p3>Cohort Manager</p3>
-      </div>
+     <Header />
 
       <div className="main-body">
-        <div className="left-menu">
-          <h3>Profile</h3>
-          <h3>Menu</h3>
-        </div>
-
+        <LeftMenu />
         <div className="content-feed">
-          <div className="make-content-form">
-            <div className="make-content-pr-img">
-              <img src={profileIcon} alt="" />
-            </div>
-
-            <input
-              type="text"
-              name="post-comment"
-              placeholder="What's on your mind?"
-            />
-
-            <button className="post-button">Post</button>
-          </div>
+          <CreateContent />
 
           <div className="post-container">
             <div className="post-overview">
@@ -69,6 +50,8 @@ function App() {
                   placeholder="Add a comment..."
                 />
                 <button className="send-button">Send</button>
+
+
               </div>
             </div>
           </div>
