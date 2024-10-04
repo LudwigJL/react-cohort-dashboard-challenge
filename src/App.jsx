@@ -10,7 +10,11 @@ const FeedContext = createContext()
 
 function App() {
   const [posts, setPosts] = useState([])
-  const [users, setUsers] =  useState([])
+  const [users, setUsers] =  useState([{
+    firstName : '',
+    lastName : '',
+    id : -1,
+  }])
 
   function fetchAllPosts(){
     fetch("https://boolean-uk-api-server.fly.dev/LudwigJL/post")
@@ -23,6 +27,7 @@ function App() {
     .then(res => res.json())
     .then(res => setUsers(res))
   }
+
 
   useEffect(() => {
     fetchAllPosts()
