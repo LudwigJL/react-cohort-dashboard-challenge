@@ -37,7 +37,7 @@ body {
 
 .head-row p3 {
   font-size: 20px;
-  
+
 }
 
 .head-icon {
@@ -96,6 +96,7 @@ input[type=text] {
   box-sizing: border-box;
   background-color: var(--background-color);
   color: #000046;
+  border-radius: 10px;
 }
 
 .post-container {

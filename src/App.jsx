@@ -1,64 +1,50 @@
+import { useEffect, useState } from "react";
 import "./App.css";
-import CreateContent from "./assets/CreateContentForm";
 import Header from "./assets/Header";
 import LeftMenu from "./assets/LeftMenu";
 import "./index.css";
-import profileIcon from "/profile-icon.svg";
+import ContentFeed from "./assets/ContentFeed";
+import { createContext } from "react";
+
+const FeedContext = createContext()
 
 function App() {
+  const [posts, setPosts] = useState([])
+  const [users, setUsers] =  useState([])
+
+  function fetchAllPosts(){
+    fetch("https://boolean-uk-api-server.fly.dev/LudwigJL/post")
+    .then(res => res.json())
+    .then(res => setPosts(res))
+  }
+
+  function fetchAllUsers() {
+    fetch("https://boolean-uk-api-server.fly.dev/LudwigJL/contact")
+    .then(res => res.json())
+    .then(res => setUsers(res))
+  }
+
+  useEffect(() => {
+    fetchAllPosts()
+    fetchAllUsers()
+    }, [])
+
+    console.log(posts)
+    console.log(users)
+    
+
   return (
     <>
      <Header />
-
-      <div className="main-body">
-        <LeftMenu />
-        <div className="content-feed">
-          <CreateContent />
-
-          <div className="post-container">
-            <div className="post-overview">
-              <div className="post-profile-img">
-                <img src={profileIcon} />
-              </div>
-
-              <div className="name-title-post">
-                <div className="name-post">
-                  <p>Sam Fletcher</p>
-                </div>
-
-                <div className="title-post">
-                  <p>Ea sport is not a real game manufacturer</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="full-title-post">
-              <p>Losadkasdkda</p>
-            </div>
-
-            <hr width="100%" size="2"/>
-
-            <div className="add-comment-container">
-              <div className="make-content-form">
-                <div className="make-content-pr-img">
-                  <img src={profileIcon} alt="" />
-                </div>
-
-                <input
-                  type="text"
-                  name="add-comment"
-                  placeholder="Add a comment..."
-                />
-                <button className="send-button">Send</button>
-
-
-              </div>
-            </div>
-          </div>
+      <FeedContext.Provider value={ {posts, setPosts, users} }>
+        <div className="main-body">
+          <LeftMenu />
+          <ContentFeed />
         </div>
-      </div>
+      </FeedContext.Provider>
+      
     </>
   );
 }
 
-export default App;
+export {App, FeedContext };

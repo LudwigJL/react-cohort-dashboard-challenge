@@ -8,7 +8,7 @@ export default function Header(){
         <div className="head-icon">
           <img src={headerIcon} />
         </div>
-        <p3>Cohort Manager</p3>
+        <p>Cohort Manager</p>
       </div>
     </>
     )
