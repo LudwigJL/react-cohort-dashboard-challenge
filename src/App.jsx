@@ -19,15 +19,14 @@ function App() {
   function fetchAllPosts(){
     fetch("https://boolean-uk-api-server.fly.dev/LudwigJL/post")
     .then(res => res.json())
-    .then(res => setPosts(res))
+    .then(data => setPosts(data))
   }
 
   function fetchAllUsers() {
     fetch("https://boolean-uk-api-server.fly.dev/LudwigJL/contact")
     .then(res => res.json())
-    .then(res => setUsers(res))
+    .then(data => setUsers(data))
   }
-
 
   useEffect(() => {
     fetchAllPosts()
@@ -52,4 +51,4 @@ function App() {
   );
 }
 
-export {App, FeedContext };
+export { App, FeedContext };

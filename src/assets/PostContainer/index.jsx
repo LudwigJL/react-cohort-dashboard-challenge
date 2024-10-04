@@ -1,10 +1,9 @@
 import profileIcon from "/profile-icon.svg";
 import { FeedContext } from "../../App";
 import { useContext, useEffect, useState } from "react";
+import CommentSection from "../CommentsSection";
 
-export default function PostContainer({ post }) {
-  console.log("enter");
-
+export default function PostContainer( { post } ) {
   const userContext = useContext(FeedContext);
   const [match, setMatch] = useState({
     firstName: "",
@@ -25,13 +24,29 @@ export default function PostContainer({ post }) {
     <>
       <div className="post-container">
         <div className="post-overview">
-          <div className="post-profile-img">
-            <img src={profileIcon} />
-          </div>
-          {console.log(match.firstName)}
+            <div
+              className="Image"
+              style={{
+                backgroundColor: match ? match.favouriteColour : "FFFFF",
+              }}
+            >
+              {match ? (
+                <p>
+                  {match.firstName.charAt(0)} {match.lastName.charAt(0)}
+                </p>
+              ) : (
+                <p>Loading user... </p>
+              )}
+            </div>
           <div className="name-title-post">
             <div className="name-post">
-              <p>{match.firstName} {match.lastName}</p>
+              {match ? (
+                <p>
+                  {match.firstName} {match.lastName}
+                </p>
+              ) : (
+                <p>Loading user... </p>
+              )}
             </div>
 
             <div className="title-post">
@@ -47,6 +62,8 @@ export default function PostContainer({ post }) {
         <hr width="100%" size="2" />
 
         <div className="add-comment-container">
+            <CommentSection post={post}/>
+
           <div className="make-content-form">
             <div className="make-content-pr-img">
               <img src={profileIcon} alt="" />
