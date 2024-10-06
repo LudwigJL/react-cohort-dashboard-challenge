@@ -43,7 +43,6 @@ export default function PostPage() {
             <PostOverview post={post} match={creator} />
             <hr width="100%" size="2" />
             <CommentSection post={post} />
-            <AddComment post={post}/>
 
           </>
         )}
