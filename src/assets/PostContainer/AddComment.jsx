@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { FeedContext } from "../../App";
 
 
-export default function AddComment( {post} ) {
+export default function AddComment( {post, comments, setComments} ) {
   const context = useContext(FeedContext)
   const signedInUsr = context.signedInUsr;
 
@@ -34,7 +34,7 @@ export default function AddComment( {post} ) {
 
     const response = await fetch(`https://boolean-uk-api-server.fly.dev/LudwigJL/post/${post.id}/comment`, requestOptions);
     const data = await response.json();
-    console.log(data)
+    setComments([...comments, data]);
   }
 
   return (
