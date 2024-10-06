@@ -24,6 +24,10 @@ export default function CreateContent() {
       "https://boolean-uk-api-server.fly.dev/LudwigJL/post",
       requestOptions)
       .then(context.setPosts(context.posts))
+
+    fetch("https://boolean-uk-api-server.fly.dev/LudwigJL/post")
+    .then(res => res.json())
+    .then(data => context.setPosts(data))  
   }
 
   function handleChange(event) {
@@ -36,12 +40,6 @@ export default function CreateContent() {
       setPostData({ ...postData, content: content, title: title });
     }
   }
-
-  useEffect(() => {
-    fetch("https://boolean-uk-api-server.fly.dev/LudwigJL/post")
-    .then(res => res.json())
-    .then(res => context.setPosts(res))
-  }, [context.setPosts])
 
   return (
     <>

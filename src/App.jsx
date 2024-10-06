@@ -22,22 +22,22 @@ function App() {
     id : -1,
   }])
 
-  function fetchAllPosts(){
-    fetch("https://boolean-uk-api-server.fly.dev/LudwigJL/post")
-    .then(res => res.json())
-    .then(data => setPosts(data))
+  const fetchAllPosts = async () => {
+    const response = await fetch("https://boolean-uk-api-server.fly.dev/LudwigJL/post");
+    const data = await response.json();
+    setPosts(data);
   }
 
-  function fetchAllUsers() {
-    fetch("https://boolean-uk-api-server.fly.dev/LudwigJL/contact")
-    .then(res => res.json())
-    .then(data => setUsers(data))
+  const fetchAllUsers = async () => {
+    const response = await fetch("https://boolean-uk-api-server.fly.dev/LudwigJL/contact");
+    const data = await response.json();
+    setUsers(data)
   }
 
-  function fetchSignedInUsr(){
-    fetch(`https://boolean-uk-api-server.fly.dev/LudwigJL/contact/${signedInUsrId}`)
-    .then(res => res.json())
-    .then(data => setSignedInUsr(data))
+  const fetchSignedInUsr = async () => {
+    const response = await fetch(`https://boolean-uk-api-server.fly.dev/LudwigJL/contact/${signedInUsrId}`);
+    const data = await response.json();
+    setSignedInUsr(data);
   }
 
   useEffect(() => {
