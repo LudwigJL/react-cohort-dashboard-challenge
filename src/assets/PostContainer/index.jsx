@@ -24,12 +24,14 @@ export default function PostContainer({ post }) {
   return (
     <>
       <div className="post-container">
-        {creator && (
+        {creator && post &&(
           <>
             <PostOverview post={post} match={creator} />
 
             <hr width="100%" size="2" />
             <CommentSection post={post} />
+            <AddComment post={post} />
+
           </>
         )}
       </div>

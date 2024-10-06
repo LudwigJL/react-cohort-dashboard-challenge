@@ -35,15 +35,13 @@ export default function AddComment( {post} ) {
     const response = await fetch(`https://boolean-uk-api-server.fly.dev/LudwigJL/post/${post.id}/comment`, requestOptions);
     const data = await response.json();
     console.log(data)
-
-    //await fetch(`https://boolean-uk-api-server.fly.dev/LudwigJL/post/${post.id}/comment`)
   }
 
   return (
     <>
       <div className="make-content-form">
-        <div className="make-content-pr-img">
-          <p>O</p>
+        <div className="Image" style={{ backgroundColor: signedInUsr ? signedInUsr.favouriteColour :'#ffffff' }}>
+          {signedInUsr ? <p>{signedInUsr.firstName.charAt(0)}{signedInUsr.lastName.charAt(0)}</p> : <p>?</p>}
         </div>
 
         <input 

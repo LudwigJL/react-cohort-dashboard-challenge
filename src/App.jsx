@@ -15,15 +15,8 @@ function App() {
   //Setting the singed in user to contact id 1 as default.
   const signedInUsrId = 1;
   const [signedInUsr, setSignedInUsr] = useState();
-
   const [posts, setPosts] = useState([]);
-  const [users, setUsers] = useState([
-    {
-      firstName: "",
-      lastName: "",
-      id: -1,
-    },
-  ]);
+
 
   const fetchAllPosts = async () => {
     const response = await fetch(
@@ -31,14 +24,6 @@ function App() {
     );
     const data = await response.json();
     setPosts(data);
-  };
-
-  const fetchAllUsers = async () => {
-    const response = await fetch(
-      "https://boolean-uk-api-server.fly.dev/LudwigJL/contact"
-    );
-    const data = await response.json();
-    setUsers(data);
   };
 
   const fetchSignedInUsr = async () => {
@@ -51,17 +36,15 @@ function App() {
 
   useEffect(() => {
     fetchAllPosts();
-    fetchAllUsers();
     fetchSignedInUsr();
   }, []);
 
   console.log(posts);
-  console.log(users);
   console.log(signedInUsr);
 
   return (
     <>
-      <FeedContext.Provider value={{ posts, setPosts, users, signedInUsr }}>
+      <FeedContext.Provider value={{ posts, setPosts, signedInUsr }}>
         <Routes>
           <Route path='/' element={<HomePage />}></Route>
           <Route path="/posts/:id" element={<PostPage />}></Route>

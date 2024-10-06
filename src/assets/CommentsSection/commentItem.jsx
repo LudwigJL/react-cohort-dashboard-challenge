@@ -3,28 +3,27 @@ import { FeedContext } from "../../App";
 
 export default function CommentItem( {comment} ) {
     const userContext = useContext(FeedContext);
-    const [match, setMatch] = useState({
-        firstName: "",
-        lastName: "",
-        favouriteColour: "",
-        id: -1,
-      });
+    const [user, setUser] = useState();
+
+    const fetchUser = async () => {
+      const response = await fetch(
+        `https://boolean-uk-api-server.fly.dev/LudwigJL/contact/${comment.contactId}`
+      );
+      const data = await response.json();
+      setUser(data);
+    };
     
-      useEffect(() => {
-        if (userContext.users && comment.contactId) {
-          const matchingUser = userContext.users.find(
-            (user) => Number(user.id) === Number(comment.contactId)
-          );
-          setMatch(matchingUser);
-        }
-      }, [userContext.users, comment.contactId]);
+    useEffect(() => {
+      fetchUser();
+    }, []);
+  
 
   
   return (
     <>
       <div className="commentSection">
-        <div className="Image" style={{ backgroundColor: match.favouriteColour}}>
-        {match ? <p>{match.firstName.charAt(0)}{match.lastName.charAt(0)}</p> : <p>?</p>}
+        <div className="Image" style={{ backgroundColor: user ? user.favouriteColour :'#ffffff' }}>
+        {user ? <p>{user.firstName.charAt(0)}{user.lastName.charAt(0)}</p> : <p>?</p>}
 
         </div>
         <div className="commentBubble">

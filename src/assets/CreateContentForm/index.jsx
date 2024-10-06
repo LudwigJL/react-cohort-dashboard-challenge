@@ -45,7 +45,7 @@ export default function CreateContent() {
   return (
     <>
       <div className="make-content-form">
-      <div className="Image" >
+      <div className="Image" style={{ backgroundColor: signedInUsr ? signedInUsr.favouriteColour :'#ffffff' }}>
           {signedInUsr ? <p>{signedInUsr.firstName.charAt(0)}{signedInUsr.lastName.charAt(0)}</p> : <p>?</p>}
       </div>
 
