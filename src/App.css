@@ -120,6 +120,8 @@ input[type=text] {
 
 }
 
+
+
 .post-overview p {
   color: #000046;
   font-size: 215;
@@ -214,6 +216,7 @@ h2 {
 }
 
 .commentBubble p{
+  padding-top:0px;
   margin-left: 20px;
   margin-right: 20px;
   margin-bottom: 20px;

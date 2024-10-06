@@ -19,8 +19,7 @@ export default function CommentItem( {comment} ) {
         }
       }, [userContext.users, comment.contactId]);
 
-      console.log(match.favouriteColour)
-
+  
   return (
     <>
       <div className="commentSection">

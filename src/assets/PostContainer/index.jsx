@@ -1,9 +1,9 @@
-import profileIcon from "/profile-icon.svg";
 import { FeedContext } from "../../App";
 import { useContext, useEffect, useState } from "react";
 import CommentSection from "../CommentsSection";
+import AddComment from "./AddComment";
 
-export default function PostContainer( { post } ) {
+export default function PostContainer({ post }) {
   const userContext = useContext(FeedContext);
   const [match, setMatch] = useState({
     firstName: "",
@@ -24,20 +24,21 @@ export default function PostContainer( { post } ) {
     <>
       <div className="post-container">
         <div className="post-overview">
-            <div
-              className="Image"
-              style={{
-                backgroundColor: match ? match.favouriteColour : "FFFFF",
-              }}
-            >
-              {match ? (
-                <p>
-                  {match.firstName.charAt(0)} {match.lastName.charAt(0)}
-                </p>
-              ) : (
-                <p>Loading user... </p>
-              )}
-            </div>
+          <div
+            className="Image"
+            style={{
+              backgroundColor: match ? match.favouriteColour : "FFFFF",
+            }}
+          >
+            {match ? (
+              <p>
+                {match.firstName.charAt(0)}
+                {match.lastName.charAt(0)}
+              </p>
+            ) : (
+              <p>Loading user... </p>
+            )}
+          </div>
           <div className="name-title-post">
             <div className="name-post">
               {match ? (
@@ -60,24 +61,9 @@ export default function PostContainer( { post } ) {
         </div>
 
         <hr width="100%" size="2" />
-
-        <div className="add-comment-container">
-            <CommentSection post={post}/>
-
-          <div className="make-content-form">
-            <div className="make-content-pr-img">
-              <img src={profileIcon} alt="" />
-            </div>
-
-            <input
-              type="text"
-              name="add-comment"
-              placeholder="Add a comment..."
-            />
-            <button className="send-button">Send</button>
-          </div>
+          <CommentSection post={post} />
+          <AddComment post={post}/>
         </div>
-      </div>
     </>
   );
 }

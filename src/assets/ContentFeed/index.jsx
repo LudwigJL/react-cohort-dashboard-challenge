@@ -11,7 +11,7 @@ export default function ContentFeed() {
         <div className="content-feed">
 
             <CreateContent />
-
+            
             <ul>
             {context.posts.map((post, index) => (
                 <li key={index}>

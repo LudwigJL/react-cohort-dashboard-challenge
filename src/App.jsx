@@ -9,6 +9,12 @@ import { createContext } from "react";
 const FeedContext = createContext()
 
 function App() {
+
+  //Setting the singed in user to contact id 1 as default.
+  const signedInUsrId = 1;
+  const [signedInUsr, setSignedInUsr] = useState() 
+
+
   const [posts, setPosts] = useState([])
   const [users, setUsers] =  useState([{
     firstName : '',
@@ -28,19 +34,27 @@ function App() {
     .then(data => setUsers(data))
   }
 
+  function fetchSignedInUsr(){
+    fetch(`https://boolean-uk-api-server.fly.dev/LudwigJL/contact/${signedInUsrId}`)
+    .then(res => res.json())
+    .then(data => setSignedInUsr(data))
+  }
+
   useEffect(() => {
     fetchAllPosts()
     fetchAllUsers()
+    fetchSignedInUsr()
     }, [])
 
     console.log(posts)
     console.log(users)
+    console.log(signedInUsr)
     
 
   return (
     <>
      <Header />
-      <FeedContext.Provider value={ {posts, setPosts, users} }>
+      <FeedContext.Provider value={ {posts, setPosts, users, signedInUsr} }>
         <div className="main-body">
           <LeftMenu />
           <ContentFeed />

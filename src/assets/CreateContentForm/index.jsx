@@ -14,8 +14,6 @@ export default function CreateContent() {
   const context = useContext(FeedContext)
 
     function sendPostRequest() {
-    console.log("Sending ... ");
-    console.log(postData);
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -31,8 +29,6 @@ export default function CreateContent() {
   function handleChange(event) {
     const inputName = event.target.name;
     const inputValue = event.target.value;
-
-    console.log(inputName, inputValue);
 
     if (inputName == "post-comment") {
       const content = inputValue;
