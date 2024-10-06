@@ -13,7 +13,7 @@ export default function ContentFeed() {
             <CreateContent />
             
             <ul>
-            {context.posts.map((post, index) => (
+            {context.posts.slice().reverse().map((post, index) => (
                 <li key={index}>
                     <PostContainer post={post} />
                 </li>
