@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { FeedContext } from "../../App";
 
 export default function CreateContent() {
-  const context = useContext(FeedContext)
+  const context = useContext(FeedContext);
   const signedInUsr = context.signedInUsr;
- 
+
   const initialData = {
     title: "",
     content: "",
@@ -12,24 +12,27 @@ export default function CreateContent() {
   };
 
   const [postData, setPostData] = useState(initialData);
-   
 
-    function sendPostRequest() {
+  const postRequest = async () => {
+
+    console.log("Sending...")
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(postData),
     };
 
-    fetch(
-      "https://boolean-uk-api-server.fly.dev/LudwigJL/post",
-      requestOptions)
-      .then(context.setPosts(context.posts))
+    const response = await fetch("https://boolean-uk-api-server.fly.dev/LudwigJL/post", requestOptions);
+    const data = await response.json();
 
-    fetch("https://boolean-uk-api-server.fly.dev/LudwigJL/post")
-    .then(res => res.json())
-    .then(data => context.setPosts(data))  
+    context.setPosts([...context.posts, data]);
+    }
+
+
+  function sendPostRequest() {
+    postRequest();
   }
+
 
   function handleChange(event) {
     const inputName = event.target.name;
@@ -45,9 +48,23 @@ export default function CreateContent() {
   return (
     <>
       <div className="make-content-form">
-      <div className="Image" style={{ backgroundColor: signedInUsr ? signedInUsr.favouriteColour :'#ffffff' }}>
-          {signedInUsr ? <p>{signedInUsr.firstName.charAt(0)}{signedInUsr.lastName.charAt(0)}</p> : <p>?</p>}
-      </div>
+        <div
+          className="Image"
+          style={{
+            backgroundColor: signedInUsr
+              ? signedInUsr.favouriteColour
+              : "#ffffff",
+          }}
+        >
+          {signedInUsr ? (
+            <p>
+              {signedInUsr.firstName.charAt(0)}
+              {signedInUsr.lastName.charAt(0)}
+            </p>
+          ) : (
+            <p>?</p>
+          )}
+        </div>
 
         <input
           type="text"

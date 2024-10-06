@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 
 export default function PostOverview( {post, match} ) {
 
+  console.log(match.firstName)
+
     return(
         <>
           <div className="post-overview">
@@ -12,10 +14,10 @@ export default function PostOverview( {post, match} ) {
             }}
           >
             {match ? (
-              <p>
+              <h3>
                 {match.firstName.charAt(0)}
                 {match.lastName.charAt(0)}
-              </p>
+              </h3>
             ) : (
               <p>Loading user... </p>
             )}

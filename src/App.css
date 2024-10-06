@@ -149,9 +149,11 @@ ul {
 }
 
 .title-post{
+  margin-top: 10px;
   height: 15px
 
 }
+
 
 h2 {
   font-size: 12px;
@@ -201,6 +203,11 @@ h2 {
   justify-content: center;  
   align-items: center; 
   border-radius: 50%;
+}
+
+.Image h3{
+  font-size: 20px;
+  font-weight: 400;
 }
 
 
