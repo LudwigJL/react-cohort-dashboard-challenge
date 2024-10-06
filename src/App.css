@@ -40,6 +40,11 @@ body {
 
 }
 
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .head-icon {
   width: 200px;
   height: 75px;
@@ -83,10 +88,6 @@ body {
 .make-content-form button{
   background-color: grey
   width 10%;
-}
-
-.make-content-pr-img {
-  width: 10%;
 }
 
 input[type=text] {

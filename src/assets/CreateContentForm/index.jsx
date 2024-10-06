@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import profileIcon from "/profile-icon.svg";
 import { FeedContext } from "../../App";
 
 export default function CreateContent() {
-  //Setting initial data here as contactId 1, which is the logged in user.
+  const context = useContext(FeedContext)
+  const signedInUsr = context.signedInUsr;
+ 
   const initialData = {
     title: "",
     content: "",
@@ -11,7 +12,7 @@ export default function CreateContent() {
   };
 
   const [postData, setPostData] = useState(initialData);
-  const context = useContext(FeedContext)
+   
 
     function sendPostRequest() {
     const requestOptions = {
@@ -44,9 +45,9 @@ export default function CreateContent() {
   return (
     <>
       <div className="make-content-form">
-        <div className="make-content-pr-img">
-          <img src={profileIcon} alt="" />
-        </div>
+      <div className="Image" >
+          {signedInUsr ? <p>{signedInUsr.firstName.charAt(0)}{signedInUsr.lastName.charAt(0)}</p> : <p>?</p>}
+      </div>
 
         <input
           type="text"
