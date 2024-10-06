@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 export default function PostOverview( {post, match} ) {
 
-
     return(
         <>
           <div className="post-overview">

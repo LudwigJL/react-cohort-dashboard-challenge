@@ -1,35 +1,38 @@
-import { FeedContext } from "../../App";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CommentSection from "../CommentsSection";
 import AddComment from "./AddComment";
 import PostOverview from "./PostOverview";
 
 export default function PostContainer({ post }) {
-  const userContext = useContext(FeedContext);
-  const [match, setMatch] = useState({
-    firstName: "",
-    lastName: "",
-    id: -1,
-  });
+  const [creator, setCreator] = useState();
+
+  const fetchCreator = async () => {
+    const response = await fetch(
+      `https://boolean-uk-api-server.fly.dev/LudwigJL/contact/${post.contactId}`
+    );
+    const data = await response.json();
+    setCreator(data);
+  };
 
   useEffect(() => {
-    if (userContext.users && post.contactId) {
-      const matchingUser = userContext.users.find(
-        (user) => Number(user.id) === Number(post.contactId)
-      );
-      setMatch(matchingUser);
-    }
-  }, [userContext.users, post.contactId]);
+    fetchCreator();
+  }, []);
+
+  console.log('hit')
+  console.log(creator);
 
   return (
     <>
       <div className="post-container">
-        <PostOverview post={post} match={match}/> 
+        {creator && (
+          <>
+            <PostOverview post={post} match={creator} />
 
-        <hr width="100%" size="2" />
-          <CommentSection post={post} />
-          
-        </div>
+            <hr width="100%" size="2" />
+            <CommentSection post={post} />
+          </>
+        )}
+      </div>
     </>
   );
 }
